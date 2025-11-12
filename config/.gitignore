@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.sqlite3
+
+# Virtual environment
+env/
+venv/
+envi/
+.venv/
+
+# Django stuff:
+*.log
+db.sqlite3
+media/
+staticfiles/        # <-- результат collectstatic (НЕ пушим)
+static_root/
+static/
+local_settings.py
+
+# IDE и системные файлы
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Migrations cache
+*/migrations/__pycache__/
