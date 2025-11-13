@@ -1,0 +1,71 @@
+<ul class="menu menu-{{ menu_name }}">
+    {% for item_data in menu_structure %}
+        <li class="menu-item level-{{ item_data.level }} {% if item_data.is_active %}active{% endif %} {% if item_data.children %}has-children{% endif %}">
+            <a href="{{ item_data.item.get_url }}"
+               class="menu-link {% if item_data.is_active %}active{% endif %}">
+                {{ item_data.item.name }}
+                {% if item_data.children and item_data.is_expanded %}▼{% endif %}
+                {% if item_data.children and not item_data.is_expanded %}►{% endif %}
+            </a>
+
+            {% if item_data.children and item_data.is_expanded %}
+                <ul class="submenu expanded">
+                    {% with menu_structure=item_data.children %}
+                        {% include 'menu/menu_template.html' %}
+                    {% endwith %}
+                </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+
+<style>
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-item {
+    margin: 2px 0;
+}
+
+.menu-link {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.menu-link:hover {
+    background-color: #e9ecef;
+    color: #007bff;
+}
+
+.menu-link.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+.submenu {
+    list-style: none;
+    padding-left: 20px;
+    margin: 5px 0;
+}
+
+.submenu.collapsed {
+    display: none;
+}
+
+.submenu.expanded {
+    display: block;
+}
+
+.level-0 > .menu-link { font-weight: bold; }
+.level-1 > .menu-link { padding-left: 20px; }
+.level-2 > .menu-link { padding-left: 35px; font-size: 0.9em; }
+</style>

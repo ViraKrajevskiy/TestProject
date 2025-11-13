@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Демонстрация древовидного меню</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .menu-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 0;
+        }
+        .content {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Демонстрация древовидного меню Django App</h1>
+
+        <div class="menu-section">
+            <h2>Главное меню (main_menu):</h2>
+            {% load menu_tags %}
+            {% draw_menu 'main_menu' %}
+        </div>
+
+        <div class="content">
+            <h2>Информация о текущей странице:</h2>
+            <p><strong>URL:</strong> {{ request.path }}</p>
+            <p><strong>Заголовок:</strong> Демонстрационная страница</p>
+            <p>Переходите по разным пунктам меню чтобы увидеть, как работает выделение активного пункта и автоматическое раскрытие подменю.</p>
+
+            <h3>Особенности реализации:</h3>
+            <ul>
+                <li> Всего 1 запрос к БД для отрисовки меню</li>
+                <li> Автоматическое определение активного пункта по URL</li>
+                <li> Разворачивание родителей активного пункта и его детей первого уровня</li>
+                <li> Поддержка named URL и явных URL</li>
+                <li> Поддержка нескольких меню на одной странице</li>
+                <li> Редактирование через стандартную админку Django</li>
+            </ul>
+        </div>
+
+
+    </div>
+</body>
+</html>

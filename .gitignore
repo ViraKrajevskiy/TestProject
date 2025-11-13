@@ -15,7 +15,7 @@ envi/
 *.log
 db.sqlite3
 media/
-staticfiles/        # <-- результат collectstatic (НЕ пушим)
+staticfiles/        
 static_root/
 static/
 local_settings.py
